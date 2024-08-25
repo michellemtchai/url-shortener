@@ -1,0 +1,8 @@
+.replit
+.replit*
+.cache
+.config
+.upm
+node_modules
+.hyperdev-assets
+replit*
