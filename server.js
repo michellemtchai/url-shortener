@@ -1,8 +1,6 @@
 'use strict';
 
 var express = require('express');
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
 
 var cors = require('cors');
 
@@ -25,6 +23,8 @@ app.get('/', function(req, res){
   res.sendFile(process.cwd() + '/views/index.html');
 });
 
+var routes = require('./routes');
+app.use('/api', routes);
   
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
@@ -32,6 +32,12 @@ app.get("/api/hello", function (req, res) {
 });
 
 
-app.listen(port, function () {
-  console.log('Node.js listening ...');
-});
+// bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, function(){
+//   bGround.log('Node is listening on port '+ port + '...')
+// });
+
+// require('./routes')(app); // pass our application into our routes
+
+const listener = app.listen(port, () => {
+  console.log('Your app is listening on port ' + listener.address().port)
+})
